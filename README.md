@@ -1,4 +1,4 @@
-# Spark Bot with Google Vision integration
+# Spark Bot with Google Vision API integration
 
 This Spark Bot uses Google Vision to analyze a pictures sent to it. You can either send a URL of an image or you can post the image itself into the spark room.
 
