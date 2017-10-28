@@ -32,21 +32,40 @@ import os
 import re
 from google.cloud import vision
 from google.cloud.vision import types
+from PIL import Image
+
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
 from settings import bot_id, bot_token, ngrok_url, webhook_id, webhook_name
 
-print_labels = True
-print_web_pages_with_matching_image = True
-print_web_pages_with_full_matching_image = False
-print_web_pages_with_partial_matching_image = False
-print_web_entities = True
 image_is_in_Spark = False
 filename = None
 use_ngrok = True
 
+
+base_img_width=1024
+
+def resize_image (filename, base_img_width):
+    img=Image.open(filename)
+
+    #Only resize if image width > base_img_width
+    if img.size[0] > base_img_width:
+        wpercent= (base_img_width / float(img.size[0]))
+        hsize = int((float(img.size[1]) * float(wpercent)))
+        img = img.resize((base_img_width, hsize), Image.ANTIALIAS)
+
+        #Save resized Image
+        new_filename = 'new_' + filename
+        img.save(new_filename)
+
+        #Remove old Image
+        os.remove(filename)
+        filename = 'new_' + filename
+
+    #return final image name
+    return filename
 
 # get ngrok tunnels information
 def get_ngrok_tunnels(ngrok_url):
@@ -499,6 +518,8 @@ def listener():
 
                         with open(filename, 'wb') as f:
                             f.write(response.content)
+
+                        filename = resize_image(filename, base_img_width)
 
                         #Analyse image with Google Vision API
                         lines = detect_web(filename)
