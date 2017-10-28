@@ -467,7 +467,7 @@ def listener():
     data = json.loads(request.data.decode('utf-8'))
     headers = request.headers
     #print data
-    
+
     messageID = data['data']['id']
     roomID = data['data']['roomId']
 
@@ -530,6 +530,9 @@ def listener():
                         if len(lines) > 1:
                             myStr = '\n'.join(lines)
                             post_message_to_room(spark_headers,roomID,myStr)
+
+                        #Delete file
+                        os.remove(filename)
 
                     else:
                         print(str(filename) + " is not an image")
