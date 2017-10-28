@@ -467,7 +467,7 @@ def listener():
     #data = json.loads(request.data)
     data = request.data
     headers = request.headers
-
+    print (type(data))
     #print data
     messageID = data['data']['id']
     roomID = data['data']['roomId']
