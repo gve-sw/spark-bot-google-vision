@@ -1,6 +1,7 @@
 # settings file and ngrok binary
 settings.py
 ngrok
+*.out
 
 # image files
 *.jpg
