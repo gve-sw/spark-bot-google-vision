@@ -464,12 +464,10 @@ app = Flask(__name__)
 @app.route('/',methods=['POST'])
 def listener():
     # On receipt of a POST (webhook), load the JSON data from the request
-    print (type(request.data))
-    data = json.loads(request.data)
-    #data = request.data
+    data = json.loads(request.data.decode('utf-8'))
     headers = request.headers
-    print (type(data))
     #print data
+    
     messageID = data['data']['id']
     roomID = data['data']['roomId']
 
