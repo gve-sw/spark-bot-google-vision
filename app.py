@@ -464,7 +464,8 @@ app = Flask(__name__)
 @app.route('/',methods=['POST'])
 def listener():
     # On receipt of a POST (webhook), load the JSON data from the request
-    data = json.loads(request.data)
+    #data = json.loads(request.data)
+    data = request.data
     headers = request.headers
 
     #print data
