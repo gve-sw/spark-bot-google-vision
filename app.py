@@ -471,11 +471,11 @@ def listener():
     messageID = data['data']['id']
     roomID = data['data']['roomId']
 
-    print ("Data from webhook:")
-    print (json.dumps(data, indent=4))
+    #print ("Data from webhook:")
+    #print (json.dumps(data, indent=4))
 
-    print ("\nHeaders from webhook:")
-    print (headers)
+    #print ("\nHeaders from webhook:")
+    #print (headers)
 
     # If the poster of the message was NOT the bot itself
     if data['actorId'] != bot_id:
