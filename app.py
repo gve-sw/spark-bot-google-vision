@@ -556,7 +556,7 @@ def listener():
                     else:
                         #print(filename + " is not an image")
                         post_message_to_room(spark_headers,roomID,"Ahoy! Thanks for sending me your \
-                            file (" + filename + "). However, I only analyze images.")
+                            file. However, I only analyze images.")
 
         else:
             print ("No files posted...")
