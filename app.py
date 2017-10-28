@@ -42,8 +42,6 @@ from settings import bot_id, bot_token, ngrok_url, webhook_id, webhook_name
 
 image_is_in_Spark = False
 filename = None
-use_ngrok = True
-
 
 base_img_width=1024
 
@@ -504,8 +502,8 @@ def listener():
         json_string = get_message_details(spark_headers, messageID)
         message = json.loads(json_string)
 
-        print ("\n\nMessage details: ")
-        print (json.dumps(message, indent=4))
+        #print ("\n\nMessage details: ")
+        #print (json.dumps(message, indent=4))
 
         if 'files' in data['data']:
             for item in data['data']['files']:
@@ -556,7 +554,9 @@ def listener():
                         os.remove(filename)
 
                     else:
-                        print(str(filename) + " is not an image")
+                        #print(filename + " is not an image")
+                        post_message_to_room(spark_headers,roomID,"Ahoy! Thanks for sending me your \
+                            file (" + filename + "). However, I only analyze images.")
 
         else:
             print ("No files posted...")
