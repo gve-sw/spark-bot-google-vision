@@ -595,6 +595,13 @@ def listener():
                             myStr = '\n'.join(lines)
                             post_message_to_room(spark_headers,roomID,myStr)
 
+                        if detect_macs:
+                            lines = detect_mac_addresses(filename)
+                            if len(lines) > 1:
+                                myStr = '\n'.join(lines)
+                                post_message_to_room(spark_headers,roomID,myStr)
+                            
+
                         #Delete file
                         os.remove(filename)
 
@@ -606,7 +613,7 @@ def listener():
                             file. However, I only analyze images.")
 
         else:
-            print ("No files posted...")
+            #print ("No files posted...")
             #let's see if there is an image URL in posted text
             #print ("Text posted: ", message['text'])
             urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', message['text'])
