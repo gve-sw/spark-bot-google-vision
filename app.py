@@ -41,6 +41,7 @@ logging.basicConfig(level=logging.DEBUG)
 from settings import bot_id, bot_token, ngrok_url, webhook_id, webhook_name
 
 image_is_in_Spark = False
+detect_macs = False
 filename = None
 
 base_img_width=1024
@@ -480,7 +481,43 @@ def detect_web_uri(uri):
     return lines
 # [END def_detect_web_uri]
 
+
+def detect_mac_addresses(path):
+    """Detects MAC addresses in the image."""
+    client = vision.ImageAnnotatorClient()
+    mac_addresses = []
+    lines = []
+    lines.append('\n**MAC Addresses:**')
+
+    with io.open(path, 'rb') as image_file:
+        content = image_file.read()
+
+    image = types.Image(content=content)
+
+    response = client.text_detection(image=image)
+    texts = response.text_annotations
+
+    for text in texts:
+        #Match MAC addresses in format aa:bb:cc:dd:ee:ff or aa-bb-cc-dd-ee-ff
+        tmp_text = text.description
+
+        match_regex = re.compile('^' + '[\:\-]'.join(['([0-9A-F]{1,2})']*6) + '$', re.IGNORECASE)
+        matched_mac_addresses = match_regex.findall(tmp_text)
+        if len(matched_mac_addresses) == 0:
+            #Match MAC addresses in format aabbccddeeff
+            match_regex = re.compile('^' + '([0-9A-F]{2})'*6 + '$', re.IGNORECASE)
+            matched_mac_addresses = match_regex.findall(tmp_text)
+
+        if len(matched_mac_addresses) > 0:
+            print (str(len(matched_mac_addresses)) + " matches found in text : " + tmp_text )
+            for mac in matched_mac_addresses:
+                lines.append('* ' + ':'.join(mac))
+
+    return lines
+
 ################################################################################
+
+
 
 
 # Flask used as listener for webhooks from Spark
@@ -574,39 +611,50 @@ def listener():
             #print ("Text posted: ", message['text'])
             urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', message['text'])
             #print ("Urls found", urls)
+
             if len(urls) > 0:
                 for url in urls:
-                    lines = detect_web_uri(url)
-                    if len(lines) > 1:
-                        myStr = '\n'.join(lines)
-                        post_message_to_room(spark_headers,roomID,myStr)
+                    #check if URL is an image
+                    response = requests.head(url)
+                    print response.headers.get('content-type')
 
-                    lines = detect_text_uri(url)
-                    if len(lines) > 1:
-                        myStr = '\n'.join(lines)
-                        post_message_to_room(spark_headers,roomID,myStr)
+                    #Only send URL to Google Vision API if url is an image
+                    if 'image' response.headers.get('content-type'):
+                        lines = detect_web_uri(url)
+                        if len(lines) > 1:
+                            myStr = '\n'.join(lines)
+                            post_message_to_room(spark_headers,roomID,myStr)
 
-                    lines = detect_faces_uri(url)
-                    if len(lines) > 1:
-                        myStr = '\n'.join(lines)
-                        post_message_to_room(spark_headers,roomID,myStr)
+                        lines = detect_text_uri(url)
+                        if len(lines) > 1:
+                            myStr = '\n'.join(lines)
+                            post_message_to_room(spark_headers,roomID,myStr)
 
-                    lines = detect_labels_uri(url)
-                    if len(lines) > 1:
-                        myStr = '\n'.join(lines)
-                        post_message_to_room(spark_headers,roomID,myStr)
+                        lines = detect_faces_uri(url)
+                        if len(lines) > 1:
+                            myStr = '\n'.join(lines)
+                            post_message_to_room(spark_headers,roomID,myStr)
 
-                    lines = detect_landmarks_uri(url)
-                    if len(lines) > 1:
-                        myStr = '\n'.join(lines)
-                        post_message_to_room(spark_headers,roomID,myStr)
+                        lines = detect_labels_uri(url)
+                        if len(lines) > 1:
+                            myStr = '\n'.join(lines)
+                            post_message_to_room(spark_headers,roomID,myStr)
 
-                    lines = detect_logos_uri(url)
-                    if len(lines) > 1:
-                        myStr = '\n'.join(lines)
-                        post_message_to_room(spark_headers,roomID,myStr)
+                        lines = detect_landmarks_uri(url)
+                        if len(lines) > 1:
+                            myStr = '\n'.join(lines)
+                            post_message_to_room(spark_headers,roomID,myStr)
 
-                    post_message_to_room(spark_headers,roomID,project_info)
+                        lines = detect_logos_uri(url)
+                        if len(lines) > 1:
+                            myStr = '\n'.join(lines)
+                            post_message_to_room(spark_headers,roomID,myStr)
+
+                        post_message_to_room(spark_headers,roomID,project_info)
+                    else:
+                        #print(url + " is not an image")
+                        post_message_to_room(spark_headers,roomID,"Ahoy! Thanks for sending me your \
+                            url. However, I only analyze images.")
 
             elif 'help' in message['text']:
                 post_message_to_room(spark_headers,roomID,"Hey! This is bot is easy to use. \
