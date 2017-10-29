@@ -41,7 +41,7 @@ logging.basicConfig(level=logging.DEBUG)
 from settings import bot_id, bot_token, ngrok_url, webhook_id, webhook_name
 
 image_is_in_Spark = False
-detect_macs = False
+detect_macs = True
 filename = None
 
 base_img_width=1024
@@ -600,7 +600,7 @@ def listener():
                             if len(lines) > 1:
                                 myStr = '\n'.join(lines)
                                 post_message_to_room(spark_headers,roomID,myStr)
-                            
+
 
                         #Delete file
                         os.remove(filename)
