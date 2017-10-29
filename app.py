@@ -45,7 +45,9 @@ filename = None
 
 base_img_width=1024
 
-signature = "Hantzley Tauckoor -(htauckoo@cisco.com)"
+signature = "Hantzley Tauckoor - (htauckoo@cisco.com)"
+project_info = "Liked this Bot? Want to contribute or create your own?\n\nSee \
+    the project on [GitHub](https://github.com/Hantzley/spark-bot-google-vision)"
 
 def resize_image (filename, base_img_width):
     img=Image.open(filename)
@@ -555,6 +557,8 @@ def listener():
                         #Delete file
                         os.remove(filename)
 
+                        post_message_to_room(spark_headers,roomID,project_info)
+
                     else:
                         #print(filename + " is not an image")
                         post_message_to_room(spark_headers,roomID,"Ahoy! Thanks for sending me your \
@@ -597,6 +601,8 @@ def listener():
                     if len(lines) > 1:
                         myStr = '\n'.join(lines)
                         post_message_to_room(spark_headers,roomID,myStr)
+
+                    post_message_to_room(spark_headers,roomID,project_info)
 
             elif 'help' in message['text']:
                 post_message_to_room(spark_headers,roomID,"Hey! This is bot is easy to use. \
