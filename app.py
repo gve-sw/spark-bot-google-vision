@@ -616,7 +616,7 @@ def listener():
                 for url in urls:
                     #check if URL is an image
                     response = requests.head(url)
-                    print response.headers.get('content-type')
+                    #print (response.headers.get('content-type'))
 
                     #Only send URL to Google Vision API if url is an image
                     if 'image' response.headers.get('content-type'):
