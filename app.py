@@ -601,7 +601,7 @@ def listener():
                     Just post an image to teh Spark room, and it will tell you what is sees. Try it \
                     and send me your feedback.")
 
-                post_message_to_room(spark_headers,roomID,"\n\nHantzley Tauckoor - [[email]](htauckoo@cisco.com)")
+                post_message_to_room(spark_headers,roomID,"\n\nHantzley Tauckoor - \[\[email\]\]\(htauckoo@cisco.com\)")
 
 
     return "OK"
