@@ -54,6 +54,11 @@ signature = "Hantzley Tauckoor - [\[Email\]](mailto:htauckoo@cisco.com) \
 project_info = "Liked this Bot? Want to contribute or create your own? See \
     the project on [GitHub](https://github.com/Hantzley/spark-bot-google-vision)"
 
+help_msg = "Hey! This bot is easy to use. \
+    Simply post an image to the Spark room, and the Bot will tell you what it sees. \
+    You can also post the URL of an image. \
+    Give it a try and send me your feedback.\n\nThank you,\n\n" + signature
+
 def resize_image (filename, base_img_width):
     img=Image.open(filename)
 
@@ -680,10 +685,8 @@ def listener():
                         post_message_to_room(spark_headers,roomID,"Ahoy! Thanks for sending me your \
                             url. However, I only analyze images.")
 
-            elif 'help' in message['text']:
-                post_message_to_room(spark_headers,roomID,"Hey! This is bot is easy to use. \
-                    Just post an image to the Spark room, and the Bot will tell you what it sees. \
-                    Give it a try and send me your feedback.\n\nThank you,\n\n" + signature)
+            elif ('help' in str.lower(message['text'])) or (message['text'] == '?'):
+                post_message_to_room(spark_headers,roomID,help_msg)
 
     return "OK"
 
