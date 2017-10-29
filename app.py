@@ -600,8 +600,8 @@ def listener():
 
             elif 'help' in message['text']:
                 post_message_to_room(spark_headers,roomID,"Hey! This is bot is easy to use. \
-                    Just post an image to the Spark room, and it will tell you what is sees. Try it \
-                    and send me your feedback.\n\nThank you,\n\n" + signature)
+                    Just post an image to the Spark room, and it will tell you what it sees. \
+                    Give it a try and send me your feedback.\n\nThank you,\n\n" + signature)
 
     return "OK"
 
