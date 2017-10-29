@@ -619,7 +619,7 @@ def listener():
                     #print (response.headers.get('content-type'))
 
                     #Only send URL to Google Vision API if url is an image
-                    if 'image' response.headers.get('content-type'):
+                    if 'image' in response.headers.get('content-type'):
                         lines = detect_web_uri(url)
                         if len(lines) > 1:
                             myStr = '\n'.join(lines)
