@@ -660,6 +660,7 @@ def listener():
                         if detect_macs:
                             #Download the image and find MAC addresses
                             response = requests.request("GET", url)
+                            filename = url.split("/")[-1]
                             with open(filename, 'wb') as f:
                                 f.write(response.content)
 
