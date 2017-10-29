@@ -45,7 +45,8 @@ filename = None
 
 base_img_width=1024
 
-signature = "Hantzley Tauckoor - [Email](mailto:htauckoo@cisco.com)"
+signature = "Hantzley Tauckoor - [[Email]](mailto:htauckoo@cisco.com) \
+    [[LinkedIn]](http://linkedin.com/in/hantzley)"
 project_info = "Liked this Bot? Want to contribute or create your own? See \
     the project on [GitHub](https://github.com/Hantzley/spark-bot-google-vision)"
 
