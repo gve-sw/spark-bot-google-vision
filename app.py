@@ -57,8 +57,9 @@ project_info = "Liked this Bot? Want to contribute or create your own? See \
 help_msg = "Hey there! The GoogleVision Bot is easy to use. \
     Simply post an image to the Spark room, and the Bot will tell you what it sees. \
     You can also post the URL of an image. \
-    \n\nE.g. \@GoogleVision <image> or \@GoogleVision <image_url> \
-    \n\nGive it a try and send me your feedback.\n\nThank you,\n\n" + signature
+    \n\nE.g. _@GoogleVision image_ or _@GoogleVision _image_url_ \
+    \n\nIf you are in a 1-1 Spark room with the Bot, you can post the image or image \
+    URL directly. Give it a try and send me your feedback.\n\nThank you,\n\n" + signature
 
 def resize_image (filename, base_img_width):
     img=Image.open(filename)
