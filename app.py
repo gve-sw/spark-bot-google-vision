@@ -657,6 +657,19 @@ def listener():
                             myStr = '\n'.join(lines)
                             post_message_to_room(spark_headers,roomID,myStr)
 
+                        if detect_macs:
+                            #Download the image and find MAC addresses
+                            response = requests.request("GET", url)
+                            with open(filename, 'wb') as f:
+                                f.write(response.content)
+
+                            filename = resize_image(filename, base_img_width)
+
+                            lines = detect_mac_addresses(filename)
+                            if len(lines) > 1:
+                                myStr = '\n'.join(lines)
+                                post_message_to_room(spark_headers,roomID,myStr)
+
                         post_message_to_room(spark_headers,roomID,project_info)
                     else:
                         #print(url + " is not an image")
