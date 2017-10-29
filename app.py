@@ -671,6 +671,9 @@ def listener():
                                 myStr = '\n'.join(lines)
                                 post_message_to_room(spark_headers,roomID,myStr)
 
+                            #Delete file
+                            os.remove(filename)
+
                         post_message_to_room(spark_headers,roomID,project_info)
                     else:
                         #print(url + " is not an image")
