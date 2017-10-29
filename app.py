@@ -45,7 +45,7 @@ filename = None
 
 base_img_width=1024
 
-signature = "\n\nThank you,\n\nHantzley Tauckoor - [Email](htauckoo@cisco.com)"
+signature = "Hantzley Tauckoor -(htauckoo@cisco.com)"
 
 def resize_image (filename, base_img_width):
     img=Image.open(filename)
@@ -601,7 +601,7 @@ def listener():
             elif 'help' in message['text']:
                 post_message_to_room(spark_headers,roomID,"Hey! This is bot is easy to use. \
                     Just post an image to the Spark room, and it will tell you what is sees. Try it \
-                    and send me your feedback." + signature)
+                    and send me your feedback.\nThank you,\n" + signature)
 
     return "OK"
 
