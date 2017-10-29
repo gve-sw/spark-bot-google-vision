@@ -45,8 +45,8 @@ filename = None
 
 base_img_width=1024
 
-signature = "Hantzley Tauckoor - (htauckoo@cisco.com)"
-project_info = "Liked this Bot? Want to contribute or create your own?\n\nSee \
+signature = "Hantzley Tauckoor - [Email](mailto:htauckoo@cisco.com)"
+project_info = "Liked this Bot? Want to contribute or create your own? See \
     the project on [GitHub](https://github.com/Hantzley/spark-bot-google-vision)"
 
 def resize_image (filename, base_img_width):
