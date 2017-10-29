@@ -54,7 +54,7 @@ signature = "Hantzley Tauckoor - [\[Email\]](mailto:htauckoo@cisco.com) \
 project_info = "Liked this Bot? Want to contribute or create your own? See \
     the project on [GitHub](https://github.com/Hantzley/spark-bot-google-vision)"
 
-help_msg = "Hey there! This GoogleVision Bot is easy to use. \
+help_msg = "Hey there! The GoogleVision Bot is easy to use. \
     Simply post an image to the Spark room, and the Bot will tell you what it sees. \
     You can also post the URL of an image. \
     Give it a try and send me your feedback.\n\nThank you,\n\n" + signature
