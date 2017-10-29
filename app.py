@@ -45,7 +45,7 @@ filename = None
 
 base_img_width=1024
 
-signature = "Hantzley Tauckoor - (htauckoo@cisco.com)"
+signature = "Hantzley Tauckoor - [Email](htauckoo@cisco.com)"
 
 def resize_image (filename, base_img_width):
     img=Image.open(filename)
