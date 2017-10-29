@@ -600,7 +600,7 @@ def listener():
                 post_message_to_room(spark_headers,roomID,"Hey! This is bot is easy to use. \
                     Just post an image to teh Spark room, and it will tell you what is sees. Try it \
                     and send me your feedback. \
-                    \n\nHantzley Tauckoor - [[email]](htauckoo@cisco.com) [[GitHub]](http://github.com/hantzley) \
+                    \n\nHantzley Tauckoor - \[\[email\]\](htauckoo@cisco.com) \[\[GitHub\]\](http://github.com/hantzley) \
                     [[LinkedIn]](http://linkedin.com/in/hantzley) [[@hantzley]](http://twitter.com/hantzley)")
 
 
