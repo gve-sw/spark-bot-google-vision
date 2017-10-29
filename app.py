@@ -57,7 +57,7 @@ project_info = "Liked this Bot? Want to contribute or create your own? See \
 help_msg = "Hey there! The GoogleVision Bot is easy to use. \
     Simply post an image to the Spark room, and the Bot will tell you what it sees. \
     You can also post the URL of an image. \
-    \n\nE.g. **_@GoogleVision image_** or **_@GoogleVision _image\-url_** \
+    \n\nE.g. **_@GoogleVision image_** or **_@GoogleVision _image\-url** \
     \n\nIf you are in a 1-1 Spark room with the Bot, you can post the image or image \
     URL directly. Give it a try and send me your feedback.\n\nThank you,\n\n" + signature
 
