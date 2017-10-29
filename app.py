@@ -509,7 +509,7 @@ def detect_mac_addresses(path):
             matched_mac_addresses = match_regex.findall(tmp_text)
 
         if len(matched_mac_addresses) > 0:
-            print (str(len(matched_mac_addresses)) + " matches found in text : " + tmp_text )
+            #print (str(len(matched_mac_addresses)) + " matches found in text : " + tmp_text )
             for mac in matched_mac_addresses:
                 lines.append('* ' + ':'.join(mac))
 
