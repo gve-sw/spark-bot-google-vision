@@ -2,7 +2,7 @@
 #   Hantzley Tauckoor (htauckoo@cisco.com)
 #       October 2017
 #
-#       This sample Spark bot application uses ngrok to facilitate a webhook to Spark
+#       This Spark Bot uses Google Vision API to analyse an image
 #
 #
 #   REQUIREMENTS:
@@ -12,6 +12,7 @@
 #       Spark webhook created with bot token
 #       settings.py file, you can modify and rename settings_template.py
 #       Google Cloud account and Vision API access
+#       Pillow -
 #
 #   WARNING:
 #       This script is meant for educational purposes only.
