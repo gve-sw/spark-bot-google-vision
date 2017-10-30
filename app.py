@@ -12,7 +12,7 @@
 #       Spark webhook created with bot token
 #       settings.py file, you can modify and rename settings_template.py
 #       Google Cloud account and Vision API access
-#       Pillow -
+#       Pillow python module
 #
 #   WARNING:
 #       This script is meant for educational purposes only.
