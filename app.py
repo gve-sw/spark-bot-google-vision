@@ -515,7 +515,7 @@ def detect_mac_addresses(path):
             match_regex = re.compile('^' + '([0-9A-F]{2})'*6 + '$', re.IGNORECASE)
             matched_mac_addresses = match_regex.findall(tmp_text)
             if len(matched_mac_addresses) == 0:
-                #Match MAC addresses in format aabbccddeeff
+                #Match MAC addresses in format abcd.abcd.abcd
                 match_regex = re.compile('^' + '([0-9A-F]{4})'*3 + '$', re.IGNORECASE)
                 matched_mac_addresses = match_regex.findall(tmp_text)
             
